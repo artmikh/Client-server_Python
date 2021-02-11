@@ -43,14 +43,3 @@ def write_to_csv(file, csv_file):
 write_to_csv('info_1.txt', 'main.csv')
 write_to_csv('info_2.txt', 'main.csv')
 write_to_csv('info_3.txt', 'main.csv')
-
-
-
-
-# re.split('\s+', text)
-
-# g = (re.split(r',', r'Эта строка написана 19.01.2018, а могла бы и 01.09.2017'))
-# print(g[1])
-# text = 'Изготовитель системы:             LENOVO'
-# g = (re.split(r':\s+', text))
-# print(g[1])
