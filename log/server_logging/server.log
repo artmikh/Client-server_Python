@@ -1,0 +1,2 @@
+2021-02-18 22:31:08,667 INFO       server Ответ клиента: ({'response': 400, 'error': 'Bad Request'})
+2021-02-18 22:32:02,424 INFO       server Ответ клиента: ({'response': 400, 'error': 'Bad Request'})
