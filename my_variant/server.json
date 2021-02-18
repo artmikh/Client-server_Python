@@ -1,0 +1,12 @@
+{
+    "1**/2**": {
+        "response" : "1**/2**",
+        "time" : "unix timestamp",
+        "alert" : "message (optional for 2xx codes)"
+    },
+    "4**/5**": {
+        "response" : "4**/5**",
+        "time" : "unix timestamp",
+        "error" : "error message (optional)"
+    }
+}
