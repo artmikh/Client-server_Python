@@ -14,7 +14,8 @@ def load_configs(is_server=True):
         'ACCOUNT_NAME',
         'PRESENCE',
         'RESPONSE',
-        'ERROR'
+        'ERROR',
+        'SETTIMEOUT'
     ]
     if not is_server:
         config_keys.append('DEFAULT_IP_ADDRESS')
