@@ -1,0 +1,36 @@
+CRITICAL   2021-02-18 20:41:33,740 hello
+INFO       2021-02-18 20:41:33,741 info message
+ERROR      2021-02-18 20:41:33,741 error
+WARNING    2021-02-18 20:41:33,742 warning
+INFO       2021-02-18 20:41:33,758 Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+CRITICAL   2021-02-18 20:42:51,658 hello
+INFO       2021-02-18 20:42:51,660 info message
+ERROR      2021-02-18 20:42:51,661 error
+WARNING    2021-02-18 20:42:51,661 warning
+INFO       2021-02-18 20:42:51,677 Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 20:44:53,941 CRITICAL   client hello
+2021-02-18 20:44:53,941 INFO       client info message
+2021-02-18 20:44:53,942 ERROR      client error
+2021-02-18 20:44:53,942 WARNING    client warning
+2021-02-18 20:44:53,948 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 21:00:15,763 CRITICAL   client hello
+2021-02-18 21:00:15,764 INFO       client info message
+2021-02-18 21:00:15,764 ERROR      client error
+2021-02-18 21:00:15,764 WARNING    client warning
+2021-02-18 21:00:15,767 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-18 21:00:15,770 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 21:00:15,770 INFO       client 401(400) : Bad Request
+2021-02-18 21:00:41,603 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-18 21:00:41,606 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 21:00:41,606 INFO       client 401(400) : Bad Request2021-02-18 22:31:08,667 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-18 22:31:08,667 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 22:31:08,667 INFO       client 401(400) : Bad Request
+2021-02-18 22:32:02,424 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-18 22:32:02,424 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-18 22:32:02,424 INFO       client 401(400) : Bad Request
+
+2021-02-22 15:16:27,897 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-22 15:16:43,620 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-22 15:16:43,622 INFO       client_log_config Функция handle_response вызвана из функции main
+2021-02-22 15:16:43,623 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-22 15:16:43,623 INFO       client 401(400) : Bad Request
