@@ -6,7 +6,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 import time
 import log.client_log_config
 import logging
-
+import decorators
 from utils import load_configs, send_message, get_message
 
 
@@ -14,7 +14,8 @@ CONFIGS = dict()
 
 logger = logging.getLogger('app_client')
 logger.setLevel(logging.DEBUG)
-logg = log.client_log_config.logg
+# logg = log.client_log_config.logg
+Logg = decorators.Logg
 
 def create_presence_message(account_name):
     message = {
@@ -26,7 +27,7 @@ def create_presence_message(account_name):
     }
     return message
 
-@logg
+@Logg()
 def handle_response(message):
     try:
         if CONFIGS.get('RESPONSE') in message:

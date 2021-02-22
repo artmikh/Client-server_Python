@@ -34,3 +34,12 @@ INFO       2021-02-18 20:42:51,677 Ответ от сервера: {'response': 
 2021-02-22 15:16:43,622 INFO       client_log_config Функция handle_response вызвана из функции main
 2021-02-22 15:16:43,623 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
 2021-02-22 15:16:43,623 INFO       client 401(400) : Bad Request
+2021-02-22 18:43:47,527 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-22 18:43:47,587 DEBUG      decorators Функция: handle_response. Параметры: ({'response': 400, 'error': 'Bad Request'},), {}. Модуль: __main__Вызов из функции main(). Вызов из функции main
+2021-02-22 18:43:47,587 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-22 18:43:47,587 INFO       client 401(400) : Bad Request
+2021-02-22 18:45:23,286 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-22 18:45:29,413 WARNING    client Были применены значения по умолчанию 127.0.0.1:7777
+2021-02-22 18:45:29,533 DEBUG      decorators Функция: handle_response. Параметры: ({'response': 400, 'error': 'Bad Request'},), {}. Модуль: __main__Вызов из функции main(). Вызов из функции main
+2021-02-22 18:45:29,533 INFO       client Ответ от сервера: {'response': 400, 'error': 'Bad Request'}
+2021-02-22 18:45:29,533 INFO       client 401(400) : Bad Request

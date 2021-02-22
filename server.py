@@ -6,15 +6,16 @@ from socket import socket, AF_INET, SOCK_STREAM
 import log.server_log_config
 import logging
 from utils import load_configs, send_message, get_message
+from decorators import Logg
 
 CONFIGS = dict()
 
 logger = logging.getLogger('app_server')
 logger.setLevel(logging.DEBUG)
-Logg = log.server_log_config.Logg
+# Logg = decorators.Logg
 
 
-@Logg('DEBUG')
+@Logg()
 def handle_message(message):
     if CONFIGS.get('ACTION') in message and message[CONFIGS.get('ACTION')] == CONFIGS.get('PRESENCE') and CONFIGS.get('TIME') in message and CONFIGS.get('USER') in message and message[CONFIGS.get('USER')][CONFIGS.get('ACCOUNT_NAME')] == 'Guest':
         return {CONFIGS.get('RESPONSE'): 200}
