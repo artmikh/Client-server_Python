@@ -12,3 +12,14 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 # log.addHandler(handlers.TimedRotatingFileHandler('client.log', when='', delay=''))
+# %(funcName)s
+
+
+def logg(func):
+    def wrapper(*args, **kwargs):
+        print('console log')
+        logger.info(f'Функция {func.__name__} вызвана из функции main')
+        r = func(*args, **kwargs)
+        return r
+    return wrapper
+

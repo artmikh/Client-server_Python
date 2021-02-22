@@ -7,13 +7,14 @@ import time
 import log.client_log_config
 import logging
 
-from utils import *
+from utils import load_configs, send_message, get_message
+
 
 CONFIGS = dict()
 
 logger = logging.getLogger('app_client')
 logger.setLevel(logging.DEBUG)
-
+logg = log.client_log_config.logg
 
 def create_presence_message(account_name):
     message = {
@@ -25,6 +26,7 @@ def create_presence_message(account_name):
     }
     return message
 
+@logg
 def handle_response(message):
     try:
         if CONFIGS.get('RESPONSE') in message:
@@ -34,6 +36,7 @@ def handle_response(message):
         raise ValueError
     except ValueError:
         logger.critical('Неверный ответ от сервера')
+
 
 def main():
     global CONFIGS
