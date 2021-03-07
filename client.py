@@ -38,23 +38,6 @@ def create_presence_message(CONFIGS, account_name='Guest'):
     return message
 
 
-# def get_user_message(sock, CONFIGS, account_name='Guest'):
-#     message = input('Введите сообщение для отправки или \'exit\' для завершения работы: ')
-#     if message == 'exit':
-#         sock.close()
-#         SERVER_LOGGER.info('Завершение работы по команде пользователя.')
-#         print('Спасибо за использование нашего сервиса!')
-#         sys.exit(0)
-#     message_dict = {
-#         CONFIGS['ACTION']: CONFIGS['MESSAGE'],
-#         CONFIGS['TIME']: time.time(),
-#         CONFIGS['ACCOUNT_NAME']: account_name,
-#         CONFIGS['MESSAGE_TEXT']: message
-#     }
-#     SERVER_LOGGER.debug(f'Сформирован словарь сообщения: {message_dict}')
-#     return message_dict
-
-
 # добавка
 def create_message(sock, account_name='Guest'):
     while True:
@@ -99,19 +82,6 @@ def create_message_for_all(sock, account_name='Guest'):
     except:
         SERVER_LOGGER.critical('Потеряно соединение с сервером.2')
         sys.exit(1)
-
-# def handle_server_message(message, CONFIG):
-#     if CONFIG['ACTION'] in message \
-#         and message[CONFIG['ACTION']] == CONFIG['MESSAGE'] \
-#         and CONFIG['SENDER'] in message \
-#         and CONFIG['MESSAGE_TEXT'] in message:
-#         print(f'Получено сообщение от пользователя '
-#               f'{message[CONFIG["SENDER"]]}:\n{message[CONFIG["MESSAGE_TEXT"]]}')
-#         SERVER_LOGGER.info(f'Получено сообщение от пользователя '
-#                     f'{message[CONFIG["SENDER"]]}:\n{message[CONFIG["MESSAGE_TEXT"]]}')
-    # else:
-    #     SERVER_LOGGER.error(f'Получено некорректное сообщение с сервера: {message}')
-
 
 @Log()
 def arg_parser(CONFIGS):
@@ -179,23 +149,23 @@ def message_from_server(sock, account_name):
             break
 
 # добавка
-def user_interactive(sock, username):
-    # print(help_text())
-    while True:
-        command = input('Введите команду: ')
-        if command == 'message':
-            create_message(sock, username)
-        # elif command == 'help':
-        #     print(help_text())
-        elif command == 'exit':
-            send_message(sock, create_exit_message(username), CONFIGS)
-            print('Завершение соединения.')
-            SERVER_LOGGER.info('Завершение работы по команде пользователя.')
-            time.sleep(0.5)
-            break
-        else:
-            print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
-        SEMAPHOR.release()
+# def user_interactive(sock, username):
+#     # print(help_text())
+#     while True:
+#         command = input('Введите команду: ')
+#         if command == 'message':
+#             create_message(sock, username)
+#         # elif command == 'help':
+#         #     print(help_text())
+#         elif command == 'exit':
+#             send_message(sock, create_exit_message(username), CONFIGS)
+#             print('Завершение соединения.')
+#             SERVER_LOGGER.info('Завершение работы по команде пользователя.')
+#             time.sleep(0.5)
+#             break
+#         else:
+#             print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
+#         SEMAPHOR.release()
 
 def user_text(sock, username):
     while True:
@@ -203,7 +173,6 @@ def user_text(sock, username):
         # print('отпустили семафор')
         # create_message(sock, username)
         create_message_for_all(sock, username)
-        # SEMAPHOR.release()
         
 
 def main():
@@ -252,28 +221,6 @@ def main():
         user_interface.join()
 
         SERVER_LOGGER.debug('Запущены процессы')
-
-    # else:
-    #     if client_mode == 'send':
-    #         print('Режим работы - отправка сообщений.')
-    #     else:
-    #         print('Режим работы - приём сообщений.')
-    #     while True:
-    #         # print(client_mode)
-    #         if client_mode == 'send':
-    #             try:
-    #                 send_message(transport, get_user_message(transport, CONFIGS), CONFIGS)
-    #             except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-    #                 SERVER_LOGGER.error(f'Соединение с сервером {server_address} было потеряно.')
-    #                 sys.exit(1)
-        
-    #         if client_mode == 'listen':
-    #             try:
-    #                 handle_server_message(get_message(transport, CONFIGS), CONFIGS)
-    #             except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-    #                 SERVER_LOGGER.error(f'Соединение с сервером {server_address} было потеряно.')
-    #                 sys.exit(1)
-
 
 if __name__ == '__main__':
     main()
