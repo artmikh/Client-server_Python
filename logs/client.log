@@ -1237,3 +1237,41 @@ hi
 2021-03-07 14:32:56,357 INFO client.py Отправлено сообщение
 2021-03-07 14:32:56,401 INFO client.py Получено сообщение от пользователя art:
 hello
+2021-03-07 14:50:55,976 DEBUG decorators.py Функция: arg_parser. Параметры: ({'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10},), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:50:55,977 INFO client.py Создание сообщения для отпарвки на сервер.
+2021-03-07 14:50:55,978 DEBUG decorators.py Функция: create_presence_message. Параметры: ({'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10}, 'art'), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:50:56,565 INFO client.py Обработка сообщения от сервера.
+2021-03-07 14:50:56,565 INFO client.py Успешная обработка сообшения от сервера.
+2021-03-07 14:50:56,566 DEBUG decorators.py Функция: handle_response. Параметры: ({'response': 200, 'user': 'art'}, {'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10}), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:50:56,566 INFO client.py Установлено соединение с сервером. Ответ сервера: 200 : OK
+2021-03-07 14:51:04,671 DEBUG decorators.py Функция: arg_parser. Параметры: ({'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10},), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:51:04,671 INFO client.py Создание сообщения для отпарвки на сервер.
+2021-03-07 14:51:04,671 DEBUG decorators.py Функция: create_presence_message. Параметры: ({'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10}, 'nik'), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:51:05,175 INFO client.py Обработка сообщения от сервера.
+2021-03-07 14:51:05,175 INFO client.py Успешная обработка сообшения от сервера.
+2021-03-07 14:51:05,176 DEBUG decorators.py Функция: handle_response. Параметры: ({'response': 200, 'user': 'nik'}, {'DEFAULT_IP_ADDRESS': '127.0.0.1', 'DEFAULT_PORT': 7778, 'MAX_CONNECTIONS': 5, 'MAX_PACKAGE_LENGTH': 1024, 'ENCODING': 'utf-8', 'ACTION': 'action', 'TIME': 'time', 'USER': 'user', 'ACCOUNT_NAME': 'account_name', 'PRESENCE': 'presence', 'RESPONSE': 'response', 'ERROR': 'error', 'SENDER': 'account_name', 'DESTINATION': 'account_name', 'MESSAGE': 'message', 'MESSAGE_TEXT': 'message_text', 'LOGGING_LEVEL': 10}), {}. Модуль: __main__. Вызов из функции main(). Вызов из функции main
+2021-03-07 14:51:05,176 INFO client.py Установлено соединение с сервером. Ответ сервера: 200 : OK
+2021-03-07 14:51:07,381 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'nik', 'time': 1615110667.381135, 'message_text': 'hello'}
+2021-03-07 14:51:07,382 INFO client.py Отправлено сообщение
+2021-03-07 14:51:07,675 INFO client.py Получено сообщение от пользователя nik:
+hello
+2021-03-07 14:51:10,717 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'nik', 'time': 1615110670.7173262, 'message_text': 'hi'}
+2021-03-07 14:51:10,717 INFO client.py Отправлено сообщение
+2021-03-07 14:51:11,175 INFO client.py Получено сообщение от пользователя nik:
+hi
+2021-03-07 14:51:14,573 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'nik', 'time': 1615110674.5735464, 'message_text': 'hahahah'}
+2021-03-07 14:51:14,573 INFO client.py Отправлено сообщение
+2021-03-07 14:51:14,675 INFO client.py Получено сообщение от пользователя nik:
+hahahah
+2021-03-07 14:51:20,301 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'art', 'time': 1615110680.3018742, 'message_text': 'hfhirhirhirhgi'}
+2021-03-07 14:51:20,301 INFO client.py Отправлено сообщение
+2021-03-07 14:51:20,678 INFO client.py Получено сообщение от пользователя art:
+hfhirhirhirhgi
+2021-03-07 14:51:23,469 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'art', 'time': 1615110683.4692492, 'message_text': 'ireyeiooif'}
+2021-03-07 14:51:23,470 INFO client.py Отправлено сообщение
+2021-03-07 14:51:23,680 INFO client.py Получено сообщение от пользователя art:
+ireyeiooif
+2021-03-07 14:51:25,912 DEBUG client.py Сформирован словарь сообщения: {'action': 'message', 'account_name': 'nik', 'time': 1615110685.912389, 'message_text': 'fgfg'}
+2021-03-07 14:51:25,913 INFO client.py Отправлено сообщение
+2021-03-07 14:51:26,182 INFO client.py Получено сообщение от пользователя nik:
+fgfg

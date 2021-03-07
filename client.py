@@ -13,7 +13,7 @@ from utils.utils import load_configs, send_message, get_message
 CONFIGS = dict()
 SERVER_LOGGER = logging.getLogger('client')
 
-SEMAPHOR = threading.Semaphore(1)
+SEMAPHOR = threading.Semaphore(0)
 
 
 # добавка
