@@ -13,6 +13,9 @@ from utils.utils import load_configs, send_message, get_message
 CONFIGS = dict()
 SERVER_LOGGER = logging.getLogger('client')
 
+SEMAPHOR = threading.Semaphore(1)
+
+
 # добавка
 @Log()
 def create_exit_message(account_name):
@@ -54,21 +57,47 @@ def create_presence_message(CONFIGS, account_name='Guest'):
 
 # добавка
 def create_message(sock, account_name='Guest'):
-    to_user = input('Введите получателя сообщения: ')
+    while True:
+        print(f'def create_message {account_name}')
+        to_user = input('Введите получателя сообщения: ')
+        if to_user =='exit':
+            break
+        message = input('Введите сообщение для отправки: ')
+        if message =='exit':
+            break
+        message_dict = {
+            CONFIGS['ACTION']: CONFIGS['MESSAGE'],
+            CONFIGS['SENDER']: account_name,
+            CONFIGS['DESTINATION']: to_user,
+            CONFIGS['TIME']: time.time(),
+            CONFIGS['MESSAGE_TEXT']: message
+        }
+        # print(message_dict)
+        # print(CONFIGS)
+        SERVER_LOGGER.debug(f'Сформирован словарь сообщения: {message_dict}')
+        try:
+            send_message(sock, message_dict, CONFIGS)
+            SERVER_LOGGER.info(f'Отправлено сообщение для пользователя {to_user}')
+            print(f'Отправлено сообщение для пользователя {to_user}')
+        except:
+            SERVER_LOGGER.critical('Потеряно соединение с сервером.1')
+            sys.exit(1)
+
+def create_message_for_all(sock, account_name='Guest'):
     message = input('Введите сообщение для отправки: ')
     message_dict = {
-        CONFIGS['ACTION']: CONFIGS['MESSAGE'],
-        CONFIGS['SENDER']: account_name,
-        CONFIGS['DESTINATION']: to_user,
-        CONFIGS['TIME']: time.time(),
-        CONFIGS['MESSAGE_TEXT']: message
-    }
+            CONFIGS['ACTION']: CONFIGS['MESSAGE'],
+            CONFIGS['SENDER']: account_name,
+            CONFIGS['TIME']: time.time(),
+            CONFIGS['MESSAGE_TEXT']: message
+        }
     SERVER_LOGGER.debug(f'Сформирован словарь сообщения: {message_dict}')
     try:
         send_message(sock, message_dict, CONFIGS)
-        SERVER_LOGGER.info(f'Отправлено сообщение для пользователя {to_user}')
+        SERVER_LOGGER.info(f'Отправлено сообщение')
+        print(f'(Отправлено сообщение)')
     except:
-        SERVER_LOGGER.critical('Потеряно соединение с сервером.')
+        SERVER_LOGGER.critical('Потеряно соединение с сервером.2')
         sys.exit(1)
 
 # def handle_server_message(message, CONFIG):
@@ -123,37 +152,36 @@ def handle_response(message, CONFIGS):
 def message_from_server(sock, account_name):
     while True:
         try:
+            SEMAPHOR.release()
+            # print('ждем')
             message = get_message(sock, CONFIGS)
-            if CONFIGS['ACTION'] in message and message[CONFIGS['ACTION']] == CONFIGS['MESSAGE'] and \
-                    CONFIGS['SENDER'] in message and CONFIGS['DESTINATION'] in message \
-                    and CONFIGS['MESSAGE_TEXT'] in message and message[CONFIGS['DESTINATION']] == account_name:
+            if CONFIGS['ACTION'] in message \
+                and message[CONFIGS['ACTION']] == CONFIGS['MESSAGE'] \
+                and CONFIGS['SENDER'] in message \
+                and message[CONFIGS["SENDER"]] != account_name \
+                and CONFIGS['MESSAGE_TEXT'] in message:
+                # and CONFIGS['DESTINATION'] in message \
+                # and message[CONFIGS['DESTINATION']] == account_name:
                 print(f'\nПолучено сообщение от пользователя {message[CONFIGS["SENDER"]]}:'
                       f'\n{message[CONFIGS["MESSAGE_TEXT"]]}')
                 SERVER_LOGGER.info(f'Получено сообщение от пользователя {message[CONFIGS["SENDER"]]}:'
                             f'\n{message[CONFIGS["MESSAGE_TEXT"]]}')
-            else:
-                SERVER_LOGGER.error(f'Получено некорректное сообщение с сервера: {message}')
+            # else:
+            #     print('->')
+            # print('прошел цикл')
+            # else:
+            #     SERVER_LOGGER.error(f'Получено некорректное сообщение с сервера: {message}')
         # except IncorrectDataRecivedError:
         #     SERVER_LOGGER.error(f'Не удалось декодировать полученное сообщение.')
         except (OSError, ConnectionError, ConnectionAbortedError,
                 ConnectionResetError, json.JSONDecodeError):
-            SERVER_LOGGER.critical(f'Потеряно соединение с сервером.')
+            SERVER_LOGGER.critical(f'Потеряно соединение с сервером.3')
             break
 
 # добавка
 def user_interactive(sock, username):
     # print(help_text())
     while True:
-        print('aaaaaaaaaaaaaa')
-        
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
-        print('aaaaaaaaaaaaaa')
         command = input('Введите команду: ')
         if command == 'message':
             create_message(sock, username)
@@ -167,10 +195,19 @@ def user_interactive(sock, username):
             break
         else:
             print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
+        SEMAPHOR.release()
 
+def user_text(sock, username):
+    while True:
+        SEMAPHOR.acquire()
+        # print('отпустили семафор')
+        # create_message(sock, username)
+        create_message_for_all(sock, username)
+        # SEMAPHOR.release()
+        
 
 def main():
-    # account_name = input("Your name: ")
+    account_name = input("Your name: ")
 
     global CONFIGS
     CONFIGS = load_configs(is_server=False)
@@ -180,7 +217,7 @@ def main():
         transport = socket(AF_INET, SOCK_STREAM)
         transport.connect((server_address, server_port))
         print(f'1-> {transport}')
-        presence_message = create_presence_message(CONFIGS) #, account_name)
+        presence_message = create_presence_message(CONFIGS, account_name)
         print(f'2-> {presence_message}')
         send_message(transport, presence_message, CONFIGS)
         print(f'3-> {server_port}, {server_address}')
@@ -200,14 +237,20 @@ def main():
         sys.exit(1)
 
     else:
-        account_name = ''
+        # account_name = ''
+        
         receiver = threading.Thread(target=message_from_server, args=(transport, account_name))
+        user_interface = threading.Thread(target=user_text, args=(transport, account_name))
+        
         receiver.daemon = True
-        receiver.start()
-
-        user_interface = threading.Thread(target=user_interactive, args=(transport, account_name))
         user_interface.daemon = True
+        
+        receiver.start()
         user_interface.start()
+        
+        receiver.join()
+        user_interface.join()
+
         SERVER_LOGGER.debug('Запущены процессы')
 
     # else:

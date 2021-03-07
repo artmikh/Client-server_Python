@@ -17,8 +17,8 @@ def load_configs(is_server=True):
         'PRESENCE',
         'RESPONSE',
         'ERROR',
-        'RECIPIENT',
         'SENDER',
+        'DESTINATION',
         'MESSAGE',
         'MESSAGE_TEXT',
         'LOGGING_LEVEL'

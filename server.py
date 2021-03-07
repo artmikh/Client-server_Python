@@ -142,10 +142,10 @@ def main():
         #             clients.remove(waiting_client)
 
         requests = read_request(recv_data_lst, clients)
-        # print(f'Прочитаны смс {requests}')
+        # print(f'Прочитаны сообщения {requests}')
         if requests:
             write_responses(requests, send_data_lst, clients)
-            print(f'Отправлены смс ')
+            print(f'Отправлены сообщения ')
 
 if __name__ == '__main__':
     main()

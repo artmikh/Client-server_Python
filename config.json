@@ -11,8 +11,8 @@
   "PRESENCE": "presence",
   "RESPONSE": "response",
   "ERROR": "error",
-  "RECIPIENT": "account_name",
   "SENDER": "account_name",
+  "DESTINATION": "account_name",
   "MESSAGE": "message",
   "MESSAGE_TEXT": "message_text",
   "LOGGING_LEVEL": 10
