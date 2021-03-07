@@ -30,21 +30,6 @@ def handle_message(message, CONFIGS):  # функция проверки presens
         CONFIGS.get('ERROR'): 'Bad Request'
     }
 
-# @log
-# def handle_message(message, messages_list, client, CONFIGS):
-#     global SERVER_LOGGER
-#     SERVER_LOGGER.debug(f'Обработка сообщения от клиента : {message}')
-#     if CONFIGS.get('ACTION') in message \
-#             and message[CONFIGS.get('ACTION')] == CONFIGS.get('PRESENCE') \
-#             and CONFIGS.get('TIME') in message \
-#             and CONFIGS.get('USER') in message:
-#             # and message[CONFIGS.get('USER')][CONFIGS.get('ACCOUNT_NAME')] == 'Guest':
-#         messages_list.append({CONFIGS.get('RESPONSE'): 200})
-#     messages_list.append({
-#         CONFIGS.get('RESPONSE'): 400,
-#         CONFIGS.get('ERROR'): 'Bad Request'
-#     })
-
 def arg_parser(CONFIGS):
     global SERVER_LOGGER
     parser = argparse.ArgumentParser()
@@ -116,30 +101,6 @@ def main():
                 recv_data_lst, send_data_lst, err_lst = select.select(clients, clients, [], 0)
         except OSError:
             pass
-
-
-        # if recv_data_lst:
-        #     for client_with_message in recv_data_lst:
-        #         try:
-        #             handle_message(get_message(client_with_message, CONFIGS), messages, client_with_message, CONFIGS)
-        #         except:
-        #             SERVER_LOGGER.info(f'Клиент {client_with_message.getpeername()} отключился от сервера.')
-        #             clients.remove(client_with_message)
-
-        # if messages and send_data_lst:
-        #     message = {
-        #         CONFIGS['ACTION']: CONFIGS['MESSAGE'],
-        #         CONFIGS['SENDER']: messages[0][0],
-        #         CONFIGS['TIME']: time.time(),
-        #         CONFIGS['MESSAGE_TEXT']: messages[0][1]
-        #     }
-        #     del messages[0]
-        #     for waiting_client in send_data_lst:
-        #         try:
-        #             send_message(waiting_client, message, CONFIGS)
-        #         except:
-        #             SERVER_LOGGER.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-        #             clients.remove(waiting_client)
 
         requests = read_request(recv_data_lst, clients)
         # print(f'Прочитаны сообщения {requests}')
